@@ -1,7 +1,39 @@
 <% if user_signed_in? %>
   <% @posts.each do |post| %>
-    <p><%= post.caption %></p>
-    <%= image_tag post.image.url(:medium) %>
+    <div class="col-md-8 col-md-2 mx-auto">
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-header align-items-center">
+            <%= image_tag post.image.url(:medium), class: "card-img-top" %>
+            <div class="mt-1">
+              <% if post.user == current_user %>
+                <%= link_to '削除する', post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
+              <% end %>
+              <%= render 'likes/favorite_button', post: post %>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="row parts">
+              <%= link_to "", "#", class: "comment" %>
+            </div>
+            <div>
+              <span><strong><%= link_to post.user.name, post.user %></strong></span>
+              <p class="mb-0"><%= post.caption %></p>
+              <%= time_ago_in_words(post.created_at).upcase + "前" %>
+              <hr>
+              <div class="row parts">
+                <form action="#" class="w-100">
+                  <div>
+                    <textarea class="form-control comment-input border-0" placeholder="コメント..." rows="1"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
 <% else %>
   <div class="bg-secondary p-3 p-sm-5 my-4 rounded">

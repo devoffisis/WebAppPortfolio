@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
   get "/users/:id", to: "users#show", as: "user"
   resources :posts, only: [:index, :new, :create, :destroy]
+  resources :likes, only: [:create, :destroy]
 end
