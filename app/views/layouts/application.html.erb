@@ -14,6 +14,18 @@
 
   <body data-turbolinks="false">
     <%= render "layouts/navbar" %>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
     <div class="container">
       <%= yield %>
     </div>
