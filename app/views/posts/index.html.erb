@@ -1,4 +1,5 @@
 <% if user_signed_in? %>
+  <%== pagy_bootstrap_nav(@pagy) %>
   <% @posts.each do |post|  %>
     <div class="col-md-8 col-md-2 mx-auto">
       <div class="card-wrap">
