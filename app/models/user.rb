@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
+  has_many :comments, dependent: :destroy
+  has_many :comment_posts, through: :comments, source: :post
 
   def favorite(post)
     self.likes.find_or_create_by(post_id: post.id)
@@ -19,5 +21,9 @@ class User < ApplicationRecord
 
   def favorite?(post)
     self.like_posts.include?(post)
+  end
+
+  def comment(user_id, post_id)
+    self.comments.create(user_id: user_id, post_id: post_id, comment: params[:comment])
   end
 end

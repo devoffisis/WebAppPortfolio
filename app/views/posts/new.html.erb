@@ -1,7 +1,9 @@
 <%= form_with model: @post do |f| %>
   <%= f.label :caption %>
   <%= f.text_field :caption %>
+  <br />
   <%= f.label :image %>
   <%= f.file_field :image %>
+  <br />
   <%= f.submit "投稿", class: "btn btn-primary" %>
 <% end %>
