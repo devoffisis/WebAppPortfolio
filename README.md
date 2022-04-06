@@ -1,5 +1,17 @@
 # README
 
+## MEMO heroku release
+- [参考](https://devcenter.heroku.com/ja/articles/getting-started-with-rails6)
+
+```sh
+# heroku createなどは対応済み
+git push heroku main
+heroku run rake db:migrate
+heroku open
+```
+
+## ORIG
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
