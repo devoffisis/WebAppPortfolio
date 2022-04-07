@@ -5,7 +5,7 @@
 
 ```sh
 # heroku createなどは対応済み
-git push heroku main
+git push heroku master
 heroku run rake db:migrate
 heroku open
 ```
