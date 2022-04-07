@@ -30,8 +30,10 @@
                 post_id: <%= comment.post_id %>,
                 user_email: <%= post.user.email %>
                 <p><%= comment.comment %></p>
-                <%= link_to '削除する', comment, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
-                <br/>
+                <% if comment.user_id == current_user.id %>
+                  <%= link_to '削除する', comment, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
+                  <br />
+                <% end %>
               <% end %>
               <hr>
               <div class="row parts">
