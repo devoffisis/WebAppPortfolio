@@ -35,6 +35,5 @@
 yarn-debug.log*
 .yarn-integrity
 
-*.png
-*.jpg
-*.jpeg
+/public/uploads
+memo.md
