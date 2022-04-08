@@ -28,6 +28,23 @@
           </div>
         </div>
       </div>
+
+      <!--TODO styling-->
+      <p>
+        <%= link_to "フォロー" , follows_user_path(@user.id), class: "btn btn-primary" %>
+        <%= link_to "フォロワー" , followers_user_path(@user.id), class: "btn btn-primary" %>
+      </p>
+      <% if current_user !=@user %>
+        <% if @user.followed_by?(current_user) %>
+          <p>
+            <%=link_to "フォロー済み" , user_relationships_path(@user.id), method: :delete %>
+          </p>
+        <% else %>
+          <p>
+            <%=link_to "フォローする" , user_relationships_path(@user.id), method: :post %>
+          </p>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
