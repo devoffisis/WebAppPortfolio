@@ -10,6 +10,18 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comment_posts, through: :comments, source: :post
 
+  # cf. https://qiita.com/kazukimatsumoto/items/14bdff681ec5ddac26d1
+  # フォロワーから見てフォロイーを集める
+  has_many :active_follows, class_name: "Follow", foreign_key: :following_id
+  has_many :followings, through: :active_follows, source: :follower
+  # フォロイーから見てフォロワーを集める
+  has_many :passive_follows, class_name: "Follow", foreign_key: :follower_id
+  has_many :followers, through: :passive_follows, source: :following
+
+  def followed_by?(user)
+    passive_follows.find_by(following_id: user.id).present?
+  end
+
   def favorite(post)
     self.likes.find_or_create_by(post_id: post.id)
   end
