@@ -5,6 +5,18 @@
 - `bundle install`がうまくいかない場合は[ここ](https://phasetr.com/archive/pg/ruby/#macmysql2)などを参照.
 - `rbenv`をインストールして`ruby 3.0.0`を導入: [ここ](https://phasetr.com/archive/pg/ruby/#rbenv)などを参照.
 
+### MySQLの起動(ついでに終了コマンドも)
+```sh
+mysql.server start
+pgrep mysql
+rails s
+
+mysql.server stop
+pgrep mysql
+```
+
+### MySQL設定
+
 ```sh
 bundle install
 mysql -uroot
@@ -21,12 +33,10 @@ mysqladmin variables | grep socket # socketの場所を確認
 | socket                                  | /tmp/mysql.sock |
 ```
 
-- ファイルを書き換え: コミットしないこと! (できればMac用のファイルを作りたいが...)
+- ファイルを書き換え.
 
 ```config/database.yml
-#変更前
-socket: /var/run/mysqld/mysqld.sock
-#変更後
+# development, testに追記
 socket: /tmp/mysql.sock
 ```
 
@@ -38,16 +48,6 @@ rails db:migrate
 
 brew install yarn
 yarn install
-```
-
-### 起動・終了
-```sh
-mysql.server start
-pgrep mysql
-rails s
-
-mysql.server stop
-pgrep mysql
 ```
 
 ## Ruby用設定
