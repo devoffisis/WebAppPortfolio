@@ -4,7 +4,7 @@
       <h2 class="logo-img mx-auto"></h2>
     </div>
     <%= form_with scope: resource, as: resource_name, url: session_path(resource_name) do |f| %>
-      <%= devise_error_messages! %>
+      <%= render "devise/shared/error_messages" , resource: resource %>
       <div class="mb-3">
         <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control" %>
       </div>
