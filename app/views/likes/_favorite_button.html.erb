@@ -1,12 +1,12 @@
 <% if current_user.favorite?(post) %>
   <%= form_with(model: current_user.likes.find_by(post_id: post.id), method: :delete, class: "d-inline") do |f| %>
     <%= hidden_field_tag :post_id, post.id %>
-    <%= f.submit 'いいね解除', class: 'btn btn-danger' %>
+    <%= f.submit 'いいね解除' ,class: 'btn btn-danger', id: "like-#{post.id}" %>
   <% end %>
 <% else %>
   <%= form_with(model: current_user.likes.build, class: "d-inline") do |f| %>
     <%= hidden_field_tag :post_id, post.id %>
-    <%= f.submit 'いいね', class: 'btn btn-primary' %>
+    <%= f.submit 'いいね', class: 'btn btn-primary', id: "like-#{post.id}" %>
   <% end %>
 <% end %>
 <%= post.likes.length %>件
